@@ -11,8 +11,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "cloudinary": "^1.13.2",
+    "dotenv": "^6.2.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
-    "multer": "^1.4.1"
+    "multer": "^1.4.1",
+    "multer-storage-cloudinary": "^2.2.1"
   }
 }

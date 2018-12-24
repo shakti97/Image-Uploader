@@ -2,7 +2,20 @@ const express =require('express');
 const path= require('path');
 const ejs=require('ejs');
 const multer=require('multer');
+const dotenv=require('dotenv');
+const cloudinary = require("cloudinary");
+const cloudinaryStorage = require("multer-storage-cloudinary");
 
+dotenv.config();
+
+const storageCloud = cloudinaryStorage({
+    cloudinary: cloudinary,
+    folder: "upload",
+    allowedFormats: ["jpg", "png"],
+    transformation: [{ width: 500, height: 500, crop: "limit" }]
+    });
+
+const parser = multer({ storage: storageCloud });
 
 const storage = multer.diskStorage({
     destination  : './public/uploads/',
@@ -10,6 +23,12 @@ const storage = multer.diskStorage({
         cb(null,file.fieldname+"-"+Date.now()+path.extname(file.originalname));
     }
 })
+
+cloudinary.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.API_KEY,
+    api_secret: process.env.API_SECRET
+    });
 
 const upload =multer({
     storage : storage,
@@ -56,6 +75,15 @@ app.post('/upload',(req,res)=>{
 
     })
 })
+app.post('/api/images', parser.single("image"), (req, res) => {
+    console.log(req.file) // to see what is returned to you
+    const image = {};
+    image.url = req.file.url;
+    image.id = req.file.public_id;
+    Image.create(image) // save image information in database
+      .then(newImage => res.json(newImage))
+      .catch(err => console.log(err));
+  });
 const port=process.env.PORT || 8000
 app.listen(port,()=>{
     console.log('Server Started');

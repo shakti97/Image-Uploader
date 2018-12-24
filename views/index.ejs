@@ -23,8 +23,13 @@
                   <button type="submit" class='btn green'>Submit</button>
                 </div>
               </form>
-                <br/>
+              <form action='/api/images' method="post" enctype="multipart/form-data">
+                <input type='file' name='image' />
+                <button type="submit">Submit</button>
+              </form>
+                <br>
               <img src="<%= typeof file!='undefined'? file : '' %>" class='img-responsive'  alt="image">
+              <img src=imageURL />
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
