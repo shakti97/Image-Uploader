@@ -11,6 +11,7 @@
     <div class="container">
         <h1>Image Upload</h1>
         <form action="/upload" method='POST' enctype="multipart/form-data">
+            <span style="color : red"><%= typeof msg!='undefined'? msg : "" %></span>
                 <div class="file-field input-field">
                   <div class="btn blue">
                     <span>Image</span>
@@ -19,8 +20,11 @@
                   <div class="file-path-wrapper">
                     <input class="file-path validate" type="text">
                   </div>
+                  <button type="submit" class='btn green'>Submit</button>
                 </div>
               </form>
+                <br/>
+              <img src="<%= typeof file!='undefined'? file : '' %>" class='img-responsive'  alt="image">
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
