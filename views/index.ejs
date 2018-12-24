@@ -23,13 +23,25 @@
                   <button type="submit" class='btn green'>Submit</button>
                 </div>
               </form>
+              <br>
+              <br>
+              <img src="<%= typeof file!='undefined'? file : '' %>" class='img-responsive'  alt="image">
+              <br>
               <form action='/api/images' method="post" enctype="multipart/form-data">
-                <input type='file' name='image' />
-                <button type="submit">Submit</button>
+                <div class="file-field input-field">
+                <div class="btn blue">
+                    <span>Image</span>
+                    <input name='image' type='file'>
+                </div>
+                <div class="file-path-wrapper">
+                    <input class="file-path validate" type="text">
+                </div>
+                <button type="submit" class="btn green">Submit</button>
+            </div>
               </form>
                 <br>
-              <img src="<%= typeof file!='undefined'? file : '' %>" class='img-responsive'  alt="image">
-              <img src=imageURL />
+              <br>
+              <img src='imageURL from the Database' alt="imageFromDb"/>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
